@@ -8,7 +8,7 @@ url_to_scrap: <url> #/?sort=new
 # path to chrome driver
 # ./chromedriver for Docker
 chrome_driver_path: <path_to_chrome_driver>
-# number of pages to scrap
+# number of pages to scrape
 num_of_pages_to_scrap: 20
 # sql table name where to scrape data
 table_name: <table name>
