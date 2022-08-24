@@ -25,7 +25,7 @@ def increment_next_marking_img_id():
     global next_marking_img_id
     next_marking_img_id += 1
     # Open a file and use dump()
-    with open('next_marking_img_id.pkl', 'wb') as file:
+    with open('./next_marking_img_id.pkl', 'wb') as file:
         # A new file will be created
         pickle.dump(next_marking_img_id, file)
 
@@ -37,21 +37,21 @@ def send_next_image(message):
 
 
 # Loading last index to mark
-with open('next_marking_img_id.pkl', 'rb') as file:
+with open('./next_marking_img_id.pkl', 'rb') as file:
     next_marking_img_id = pickle.load(file)
     print('Last saved next marking index:', next_marking_img_id)
 
 
-with open('already_recommended_img_ids.pkl', 'rb') as file:
+with open('./already_recommended_img_ids.pkl', 'rb') as file:
     already_recommended_img_ids = pickle.load(file)
     print('Уже зарекомендованные кроссовки:', already_recommended_img_ids)
 
 
-with open('is_model_up_to_date.pkl', 'rb') as file:
+with open('./is_model_up_to_date.pkl', 'rb') as file:
     is_model_up_to_date = pickle.load(file)
     print('Модель обучена на новых данных?', is_model_up_to_date)
 
-with open('first_launch.pkl', 'rb') as file:
+with open('./first_launch.pkl', 'rb') as file:
     first_launch = pickle.load(file)
 
 print('Первый запуск?', first_launch)
@@ -133,7 +133,7 @@ def text(message):
                 time.sleep(1)
                 bot.send_photo(message.chat.id, image, caption=caption)
                 i += 1
-            with open('already_recommended_img_ids.pkl', 'wb') as file:
+            with open('./already_recommended_img_ids.pkl', 'wb') as file:
                 pickle.dump(already_recommended_img_ids, file)
         elif message.text == 'I like it' and marking_stage is True:
             postgres_connection.mark_image_by_index(1, next_marking_img_id)
@@ -154,7 +154,7 @@ def text(message):
             all_matches = find_all('model_best.pth.tar', './trained_models')
             path_to_best_model = all_matches[len(all_matches) - 1]
             os.system('python inference.py ./resized_imgs/not_labeled --model efficientnet_b0 --num-classes 2 --topk 1 --checkpoint ' + path_to_best_model + ' --input-size 3 224 224 -b 32 --interpolation bicubic')
-            with open('is_model_up_to_date.pkl', 'wb') as file:
+            with open('./is_model_up_to_date.pkl', 'wb') as file:
                 pickle.dump(True, file)
             is_model_up_to_date = True
         elif message.text == 'Обучить модель на новых данных' and marking_stage is False and is_model_up_to_date:
