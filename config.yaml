@@ -10,7 +10,7 @@ url_to_scrap: <url> #/?sort=new
 chrome_driver_path: <path_to_chrome_driver>
 # number of pages to scrape
 num_of_pages_to_scrap: 20
-# sql table name where to scrape data
+# sql table name where to save scraped data
 table_name: <table name>
 # scrolling pause while scraping
 scroll_pause_time: 0.2
