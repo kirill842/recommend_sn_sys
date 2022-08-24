@@ -14,8 +14,6 @@ num_of_pages_to_scrap: 20
 table_name: <table name>
 # scrolling pause while scraping
 scroll_pause_time: 0.2
-# where to save imgs
-save_path_where_to_load_imgs_from_db: ./img_data_scraped_from_urls/all
 # sql info
 user: <user>
 password: <password>
