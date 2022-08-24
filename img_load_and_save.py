@@ -59,7 +59,7 @@ def move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id: int, not_efficient
     if not_efficient_but_safe:
         convert_images_to_training_format_and_save(config.db_connect_link)
     else:
-        with open('last_moved_img_id.pkl', 'rb') as file:
+        with open('./last_moved_img_id.pkl', 'rb') as file:
             last_moved_img_id = pickle.load(file)
 
         print('Moving images from', last_moved_img_id + 1, 'to', last_labeled_img_id)
@@ -76,7 +76,7 @@ def move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id: int, not_efficient
                 shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg', './resized_imgs/train/bad/' + str(img_id) + '.jpg')
 
         last_moved_img_id = last_labeled_img_id
-        with open('last_moved_img_id.pkl', 'wb') as file:
+        with open('./last_moved_img_id.pkl', 'wb') as file:
             # A new file will be created
             pickle.dump(last_moved_img_id, file)
 

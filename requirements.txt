@@ -6,5 +6,5 @@ selenium
 beautifulsoup4
 PyYAML
 Pillow
-timm
 sklearn
+timm

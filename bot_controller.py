@@ -4,7 +4,6 @@ from telebot import types
 import pickle
 import pandas as pd
 import os
-import psycopg2
 
 import config
 from img_load_and_save import move_new_labeled_imgs_to_proper_dirs
