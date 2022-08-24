@@ -1,0 +1,10 @@
+pandas
+pyTelegramBotAPI
+SQLAlchemy
+psycopg2-binary
+selenium
+beautifulsoup4
+PyYAML
+Pillow
+timm
+sklearn
