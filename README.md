@@ -90,11 +90,30 @@ Once I went to a site with the purchase of things and thought, why not train a n
   git clone https://github.com/kirill842/recommend_sn_sys
   ```
   
-  __4. Build docker image and create docker container using my docker files__
+  __4. PostgreSQL__
   
-  __5. Run this command to run container with gpu__
+  You will need PostgreSQL database to use this project
+  1. Use these links to install PostgreSQL
+  https://www.postgresql.org/download/ | https://www.pgadmin.org/
+  2. Run this command in pgAdmin4 to create table
+  ```
+  create table scraped_imgs_with_info(
+    img_id serial PRIMARY KEY,
+    img_url VARCHAR(255) UNIQUE NOT NULL,
+    product_url VARCHAR(255) UNIQUE NOT NULL,
+    brand_name VARCHAR(255) NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    price integer NOT NULL,
+    target integer
+  );
+  ```
+  
+  __5. Build docker image and create docker container using my docker files__
+  
+  __6. Run this command to run container with gpu__
   ```
   docker run --name my_all_gpu_container --gpus all -t nvidia/cuda
   ```
+  It's better to have the whole application completely in the image, to skip creating the image itself. I will ever make it
 
 </details>
