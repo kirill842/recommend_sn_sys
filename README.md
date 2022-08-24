@@ -76,7 +76,7 @@ We assume that if people are interested in watching other gamers (professional o
 <details>
   <summary>Docker(Experimental)</summary>
   
-  
+  ## Initial usage
   __1. Install Docker Desktop__
 
   https://www.docker.com/products/docker-desktop/
@@ -85,9 +85,15 @@ We assume that if people are interested in watching other gamers (professional o
   
   https://github.com/NVIDIA/nvidia-docker
   
-  __3. Build docker image and create docker container using my docker files__
+  __3. Clone GitHub repository__
   
-  __4. Run this command to run container with gpu__
+  ```
+  git clone https://github.com/kirill842/recommend_sn_sys
+  ```
+  
+  __4. Build docker image and create docker container using my docker files__
+  
+  __5. Run this command to run container with gpu__
   ```
   docker run --name my_all_gpu_container --gpus all -t nvidia/cuda
   ```
