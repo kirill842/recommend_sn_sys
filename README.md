@@ -84,9 +84,9 @@ We assume that if people are interested in watching other gamers (professional o
   
   https://github.com/NVIDIA/nvidia-docker
   
-  __3. Create container using my docker files__
+  __3. Build docker image and create docker container using my docker files__
   
-  __4. Run this command__
+  __4. Run this command to run container with gpu__
   ```
   docker run --name my_all_gpu_container --gpus all -t nvidia/cuda
   ```
