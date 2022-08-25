@@ -93,7 +93,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   https://www.postgresql.org/download/ | https://www.pgadmin.org/
   2. Run this command in pgAdmin4 to create table
   ```
-  create table scraped_imgs_with_info(
+  create table <your_table_name>(
     img_id serial PRIMARY KEY,
     img_url VARCHAR(255) UNIQUE NOT NULL,
     product_url VARCHAR(255) UNIQUE NOT NULL,
