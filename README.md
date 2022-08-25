@@ -133,7 +133,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
     target integer
   );
   ```
-  __4. Create and fill docker_env_vars.txt like this__
+  __4. Create and fill docker_env_vars.txt. Template:__
   
   ```
   NUM_OF_PAGES_TO_SCRAP=20
