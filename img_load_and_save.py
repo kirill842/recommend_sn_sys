@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 
 def load_images_from_url_and_save(database_connection_link: str, save_path: str):
-    scraped_imgs_df = pd.read_sql('SELECT img_id, img_url FROM ' + config.table_name, database_connection_link)
+    scraped_imgs_df = pd.read_sql('SELECT img_id, img_url FROM ' + config.TABLE_NAME, database_connection_link)
     for index, row in scraped_imgs_df.iterrows():
         img_id = int(row['img_id'])
         url = row.img_url
@@ -21,7 +21,7 @@ def load_images_from_url_and_save(database_connection_link: str, save_path: str)
 def convert_images_to_training_format_and_save(database_connection_link: str):
     # os.rename("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
     # os.replace("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
-    scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.table_name, database_connection_link)
+    scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.TABLE_NAME, database_connection_link)
     # if labeled_data:
     #     scraped_data_df = scraped_data_df[(scraped_data_df['target'] == 1) | (scraped_data_df['target'] == 0)]
     # else:
@@ -57,14 +57,14 @@ def convert_images_to_training_format_and_save(database_connection_link: str):
 
 def move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id: int, not_efficient_but_safe: bool):
     if not_efficient_but_safe:
-        convert_images_to_training_format_and_save(config.db_connect_link)
+        convert_images_to_training_format_and_save(config.DB_CONNECT_LINK)
     else:
         with open('./last_moved_img_id.pkl', 'rb') as file:
             last_moved_img_id = pickle.load(file)
 
         print('Moving images from', last_moved_img_id + 1, 'to', last_labeled_img_id)
 
-        scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.table_name, config.db_connect_link)
+        scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.TABLE_NAME, config.DB_CONNECT_LINK)
         for img_id in range(last_moved_img_id + 1, last_labeled_img_id + 1):
             print(scraped_data_df[scraped_data_df['img_id'] == img_id])
             target = int(scraped_data_df[scraped_data_df['img_id'] == img_id]['target'])
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='write after .py -h for more info')
 
     parser.add_argument('--db_connect_link', type=str,
-                        default=config.db_connect_link,
+                        default=config.DB_CONNECT_LINK,
                         help='Connection link to database. Example: postgresql://login:password@ip:port/db_name')
     parser.add_argument('--save_path', type=str,
                         default='./img_data_scraped_from_urls/all',
@@ -93,9 +93,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    load_images_from_url_and_save(config.db_connect_link, './img_data_scraped_from_urls/all')
+    load_images_from_url_and_save(config.DB_CONNECT_LINK, './img_data_scraped_from_urls/all')
 
-    convert_images_to_training_format_and_save(config.db_connect_link)
+    convert_images_to_training_format_and_save(config.DB_CONNECT_LINK)
 
     #
     # # Loading last index to mark

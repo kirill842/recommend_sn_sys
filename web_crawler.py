@@ -7,13 +7,13 @@ import config
 def scrap_site_and_update_database(scrape_new=False):
     parser = argparse.ArgumentParser(description='hello!')
     parser.add_argument('--db_connect_link', type=str,
-                        default=config.db_connect_link,
+                        default=config.DB_CONNECT_LINK,
                         help='Connection link to database. Example: postgresql://login:password@ip:port/db_name')
-    parser.add_argument('--url_to_scrap', type=str, default=config.url_to_scrap,
+    parser.add_argument('--url_to_scrap', type=str, default=config.URL_TO_SCRAP,
                         help='Url to scrap. Example: https://www.lamoda.ru/c/5971/shoes-muzhkrossovki')
-    parser.add_argument('--num_of_pages_to_scrap', type=int, default=config.num_of_pages_to_scrap,
+    parser.add_argument('--num_of_pages_to_scrap', type=int, default=config.NUM_OF_PAGES_TO_SCRAP,
                         help='Number of pages to scrap images everytime web crawler script is executed')
-    parser.add_argument('--scroll_pause_time', type=float, default=config.scroll_pause_time,
+    parser.add_argument('--scroll_pause_time', type=float, default=config.SCROLL_PAUSE_TIME,
                         help='Pause during scrolling. Bigger values guarantee loading all dynamic content.' +
                         '0.2sec is enough for https://www.lamoda.ru')
 
@@ -24,7 +24,7 @@ def scrap_site_and_update_database(scrape_new=False):
         url_to_scrap += '/?sort=new'
 
     errors = 0
-    for page_number in range(1, config.num_of_pages_to_scrap + 1):
+    for page_number in range(1, config.NUM_OF_PAGES_TO_SCRAP + 1):
         # get page data from scraper
         image_urls, product_urls, brand_names, product_names, prices = \
             get_data_from_url(args.url_to_scrap, page_number=page_number, scroll_pause_time=args.scroll_pause_time)

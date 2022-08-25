@@ -6,10 +6,10 @@ import pandas as pd
 import os
 
 import config
-from img_load_and_save import move_new_labeled_imgs_to_proper_dirs
+import img_load_and_save
 import postgres_connection
 
-TOKEN = config.bot_token
+TOKEN = config.BOT_TOKEN
 marking_stage = False
 
 # # use it to create yaml file
@@ -115,8 +115,8 @@ def text(message):
                     mask.append(False)
             good_output = good_output[mask]
             scraped_imgs_df = pd.read_sql(
-                'SELECT img_id, img_url, product_url, brand_name, product_name, price FROM ' + config.table_name,
-                config.db_connect_link
+                'SELECT img_id, img_url, product_url, brand_name, product_name, price FROM ' + config.TABLE_NAME,
+                config.DB_CONNECT_LINK
             )
             i = 0
             for index, row in good_output.iterrows():
@@ -169,13 +169,13 @@ def text(message):
         elif message.text == 'Naah' and marking_stage is False:
             print('Error! Please try later')
         elif message.text == 'Back' and marking_stage is True:
-            with open('is_model_up_to_date.pkl', 'wb') as file:
+            with open('./is_model_up_to_date.pkl', 'wb') as file:
                 pickle.dump(False, file)
             is_model_up_to_date = False
             marking_stage = False
             last_labeled_img_id = next_marking_img_id - 1
             bot.send_message(message.chat.id, 'Бот сохраняет новые данные, в зависимости от количества данных это может занять разное время', parse_mode='html')
-            move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id, not_efficient_but_safe=True)
+            img_load_and_save.move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id, not_efficient_but_safe=True)
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             item1 = types.KeyboardButton('Режим разметки данных')
             item2 = types.KeyboardButton('Новый подбор кроссовок')

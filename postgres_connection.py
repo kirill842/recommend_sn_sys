@@ -5,7 +5,7 @@ import config
 
 
 def append_scraped_data_to_postgres_database(scraped_data: dict, database_connection_link: str):
-    df_from_sql = pd.read_sql('SELECT img_url, product_url FROM ' + config.table_name, database_connection_link)
+    df_from_sql = pd.read_sql('SELECT img_url, product_url FROM ' + config.TABLE_NAME, database_connection_link)
 
     # # print duplicates if they exist
     # grouped = df_from_sql.groupby(df_from_sql.columns.tolist(), as_index=False).size()
@@ -40,7 +40,7 @@ def append_scraped_data_to_postgres_database(scraped_data: dict, database_connec
 
 
 def get_pandas_df_from_sql(database_connection_link: str) -> pd.DataFrame:
-    scraped_imgs_df = pd.read_sql('SELECT img_url, product_url, brand_name, product_name, price FROM ' + config.table_name,
+    scraped_imgs_df = pd.read_sql('SELECT img_url, product_url, brand_name, product_name, price FROM ' + config.TABLE_NAME,
                                   database_connection_link)
     return scraped_imgs_df
 
@@ -48,14 +48,14 @@ def get_pandas_df_from_sql(database_connection_link: str) -> pd.DataFrame:
 def mark_image_by_index(mark: int, img_id: int):
     # engine = sqlalchemy.create_engine(config.db_connect_link)
     try:
-        connection = psycopg2.connect(user=config.user,
-                                      password=config.password,
-                                      host=config.host,
-                                      port=config.port,
-                                      database=config.database)
+        connection = psycopg2.connect(user=config.USER,
+                                      password=config.PASSWORD,
+                                      host=config.HOST,
+                                      port=config.PORT,
+                                      database=config.DATABASE)
         cursor = connection.cursor()
         # Update single record now
-        sql_update_query = 'UPDATE ' + config.table_name + ' SET target = %s WHERE img_id = %s;'
+        sql_update_query = 'UPDATE ' + config.TABLE_NAME + ' SET target = %s WHERE img_id = %s;'
         cursor.execute(sql_update_query, (mark, img_id))
         connection.commit()
         count = cursor.rowcount

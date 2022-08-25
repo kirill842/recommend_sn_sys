@@ -5,12 +5,12 @@ import config
 from selenium.webdriver.chrome.options import Options
 
 
-def get_data_from_url(url_to_scrap: str, page_number: int, scroll_pause_time=config.scroll_pause_time):
+def get_data_from_url(url_to_scrap: str, page_number: int, scroll_pause_time=config.SCROLL_PAUSE_TIME):
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(executable_path=config.chrome_driver_path, chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=config.CHROME_DRIVER_PATH, chrome_options=chrome_options)
 
     # if num_of_pages_to_scrap == 0:
     #     # todo: how long to scrap without getting duplicates?

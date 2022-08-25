@@ -7,6 +7,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
+RUN python setup.py
 RUN python web_crawler.py
 RUN python img_load_and_save.py
 CMD ["python", "bot_controller.py"]

@@ -20,7 +20,7 @@ import web_crawler
 #
 # add_to_startup()
 
-driver = webdriver.Chrome(executable_path=config.chrome_driver_path)
+driver = webdriver.Chrome(executable_path=config.CHROME_DRIVER_PATH)
 driver.get('https://www.lamoda.ru/c/2981/shoes-krossovk-kedy-muzhskie/')
 
 content = driver.page_source
