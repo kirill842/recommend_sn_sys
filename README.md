@@ -26,6 +26,10 @@ Once I went to a site with the purchase of things and thought, why not train a n
   ## Initial usage
   __0.1. Install python and nvidia drivers__
   
+  https://www.nvidia.com/download/index.aspx
+  
+  https://www.python.org/downloads/
+  
   __0.2. Install requirements__
   
   ```
