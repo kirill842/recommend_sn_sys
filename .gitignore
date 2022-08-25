@@ -6,3 +6,7 @@ chromedriver
 Dockerfile
 docker-compose.yml
 .dockerignore
+resized_imgs/
+img_data_scraped_from_urls/
+trained_models/
+topk_ids.csv

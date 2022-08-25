@@ -65,15 +65,30 @@ def move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id: int, not_efficient
         print('Moving images from', last_moved_img_id + 1, 'to', last_labeled_img_id)
 
         scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.TABLE_NAME, config.DB_CONNECT_LINK)
+
+        i = 0
         for img_id in range(last_moved_img_id + 1, last_labeled_img_id + 1):
-            print(scraped_data_df[scraped_data_df['img_id'] == img_id])
+            # print(scraped_data_df[scraped_data_df['img_id'] == img_id])
             target = int(scraped_data_df[scraped_data_df['img_id'] == img_id]['target'])
-            print(target)
+            # print(target)
             assert (target == 0 or target == 1)
             if target == 1:
-                shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg', './resized_imgs/train/good/' + str(img_id) + '.jpg')
+                if i == 4:
+                    shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg',
+                                './resized_imgs/val/good/' + str(img_id) + '.jpg')
+                    i = 0
+                else:
+                    shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg',
+                                './resized_imgs/train/good/' + str(img_id) + '.jpg')
             elif target == 0:
-                shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg', './resized_imgs/train/bad/' + str(img_id) + '.jpg')
+                if i == 4:
+                    shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg',
+                                './resized_imgs/val/bad/' + str(img_id) + '.jpg')
+                    i = 0
+                else:
+                    shutil.move('./resized_imgs/not_labeled/' + str(img_id) + '.jpg',
+                                './resized_imgs/train/bad/' + str(img_id) + '.jpg')
+            i += 1
 
         last_moved_img_id = last_labeled_img_id
         with open('./last_moved_img_id.pkl', 'wb') as file:
