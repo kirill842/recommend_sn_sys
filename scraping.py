@@ -12,11 +12,6 @@ def get_data_from_url(url_to_scrap: str, page_number: int, scroll_pause_time=con
     chrome_options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(executable_path=config.CHROME_DRIVER_PATH, chrome_options=chrome_options)
 
-    # if num_of_pages_to_scrap == 0:
-    #     # todo: how long to scrap without getting duplicates?
-    #     raise Exception("Auto-count is not implemented! You need to specify" +
-    #                     "how many pages to scrap in get_img_urls_from_url method!")
-
     if '?' in url_to_scrap:
         url = url_to_scrap + '&page=' + str(page_number)
     else:

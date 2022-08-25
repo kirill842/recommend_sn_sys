@@ -47,7 +47,6 @@ def get_pandas_df_from_sql(database_connection_link: str) -> pd.DataFrame:
 
 
 def mark_image_by_index(mark: int, img_id: int):
-    # engine = sqlalchemy.create_engine(config.db_connect_link)
     try:
         connection = psycopg2.connect(user=config.USER,
                                       password=config.PASSWORD,

@@ -19,13 +19,7 @@ def load_images_from_url_and_save(database_connection_link: str, save_path: str)
 
 
 def convert_images_to_training_format_and_save(database_connection_link: str):
-    # os.rename("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
-    # os.replace("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
     scraped_data_df = pd.read_sql('SELECT img_id, target FROM ' + config.TABLE_NAME, database_connection_link)
-    # if labeled_data:
-    #     scraped_data_df = scraped_data_df[(scraped_data_df['target'] == 1) | (scraped_data_df['target'] == 0)]
-    # else:
-    #     scraped_data_df = scraped_data_df[(scraped_data_df['target'] != 1) & (scraped_data_df['target'] != 0)]
     scraped_data_df_filtered = scraped_data_df.sort_values(by=['img_id'])
     scraped_data_df_filtered = scraped_data_df_filtered.sample(frac=1).reset_index(drop=True)
     train, test = train_test_split(scraped_data_df_filtered, test_size=0.2)
@@ -111,28 +105,3 @@ if __name__ == "__main__":
     load_images_from_url_and_save(config.DB_CONNECT_LINK, './img_data_scraped_from_urls/all')
 
     convert_images_to_training_format_and_save(config.DB_CONNECT_LINK)
-
-    #
-    # # Loading last index to mark
-    # with open('next_marking_img_id.pkl', 'rb') as file:
-    #     next_marking_img_id = pickle.load(file)
-    #     print('Last saved next marking index:', next_marking_img_id)
-    #
-    # last_labeled_img_id = next_marking_img_id - 1
-    #
-    # move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id)
-#
-#
-# def convert_images_to_training_format_and_save(database_connection_link: str):
-#     # os.rename("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
-#     # os.replace("path/to/current/file.foo", "path/to/new/destination/for/file.foo")
-#     scraped_data_df = pd.read_sql('SELECT img_id, target FROM scraped_imgs_with_info', database_connection_link)
-#     scraped_data_df = scraped_data_df[(scraped_data_df['target'] == 1) | (scraped_data_df['target'] == 0)]
-#     scraped_data_df_filtered = scraped_data_df.sort_values(by=['img_id'])
-#     for i, row in scraped_data_df_filtered.iterrows():
-#         target = row['target']
-#         img_id = int(row['img_id'])
-#         if target == 1:
-#             shutil.copy("./img_data_scraped_from_urls/all/" + str(img_id) + ".jpg", "./img_data_scraped_from_urls/imagenet_like/train/good/" + str(img_id) + ".jpg")
-#         elif target == 0:
-#             shutil.copy("./img_data_scraped_from_urls/all/" + str(img_id) + ".jpg", "./img_data_scraped_from_urls/imagenet_like/train/bad/" + str(img_id) + ".jpg")

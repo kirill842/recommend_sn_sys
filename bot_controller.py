@@ -13,14 +13,6 @@ import web_crawler
 TOKEN = config.BOT_TOKEN
 marking_stage = False
 
-# # use it to create yaml file
-# next_marking_img_id = 1
-# with open('next_marking_img_id.pkl', 'wb') as file:
-#     # A new file will be created
-#     pickle.dump(next_marking_img_id, file)
-#
-# exit()
-
 
 def increment_next_marking_img_id():
     global next_marking_img_id
