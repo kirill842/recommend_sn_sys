@@ -37,7 +37,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   <summary>Source</summary>
   
   ## Initial usage
-  __0.1. Install python and nvidia drivers__
+  __0. Install python and nvidia drivers__
   
   https://www.nvidia.com/download/index.aspx
   
