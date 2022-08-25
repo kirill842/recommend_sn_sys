@@ -4,8 +4,8 @@ try:
     BOT_TOKEN = os.environ['BOT_TOKEN']
     DB_CONNECT_LINK = os.environ['DB_CONNECT_LINK']
     URL_TO_SCRAP = os.environ['URL_TO_SCRAP']
-    CHROME_DRIVER_PATH = os.environ['CHROME_DRIVER_PATH']
-    NUM_OF_PAGES_TO_SCRAP = os.environ['NUM_OF_PAGES_TO_SCRAP']
+    CHROME_DRIVER_PATH = './chromedriver'
+    NUM_OF_PAGES_TO_SCRAP = int(os.environ['NUM_OF_PAGES_TO_SCRAP'])
     SCROLL_PAUSE_TIME = os.environ['SCROLL_PAUSE_TIME']
     USER = os.environ['USER']
     PASSWORD = os.environ['PASSWORD']
@@ -37,6 +37,7 @@ except Exception as e:
     TABLE_NAME = configs['table_name']
 
 print('Configuration was loaded')
+
 
 # import pickle
 # with open('./first_launch.pkl', 'rb') as file:

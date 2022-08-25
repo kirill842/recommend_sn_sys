@@ -33,9 +33,10 @@ def append_scraped_data_to_postgres_database(scraped_data: dict, database_connec
     # push img links to database
     try:
         engine = sqlalchemy.create_engine(database_connection_link)
-        scraped_data_df.to_sql('scraped_imgs_with_info', con=engine, if_exists='append', index=False)
+        scraped_data_df.to_sql(config.TABLE_NAME, con=engine, if_exists='append', index=False)
+        print('Page was pushed to sql')
     except Exception as e:
-        print('Page wasnt pushed to sql')
+        print('Page was NOT pushed to sql')
         print(e)
 
 

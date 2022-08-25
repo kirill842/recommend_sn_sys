@@ -56,14 +56,21 @@ with open('./first_launch.pkl', 'rb') as file:
     first_launch = pickle.load(file)
 
 if first_launch is True:
+    print('It is first launch, we will scrape', config.NUM_OF_PAGES_TO_SCRAP, 'pag. and fill directories for train and inference scripts')
     web_crawler.scrap_site_and_update_database()
     img_load_and_save.load_images_from_url_and_save(config.DB_CONNECT_LINK, './img_data_scraped_from_urls/all')
+    print('All images were loaded')
     img_load_and_save.convert_images_to_training_format_and_save(config.DB_CONNECT_LINK)
+    print('All images were transformed ')
     with open('./first_launch.pkl', 'wb') as file:
         # A new file will be created
         pickle.dump(False, file)
+else:
+    print('It is not first launch')
 
 bot = telebot.TeleBot(TOKEN)
+
+print('Bot is ready, go to telegram')
 
 
 @bot.message_handler(commands=['start'])
@@ -110,6 +117,7 @@ def text(message):
                 output = pd.read_csv('topk_ids.csv', names=column_names)
             except Exception as error:
                 print(error)
+                bot.send_message(message.chat.id, 'Бот не нашёл выхода модели, сначала разметьте данные и обучите модель', parse_mode='html')
                 exit()
             good_output = output[output['target'] == 1]
             img_ids_jpg = good_output['img_id_jpg'].tolist()
@@ -147,9 +155,14 @@ def text(message):
             increment_next_marking_img_id()
             send_next_image(message)
         elif message.text == 'Обучить модель на новых данных' and marking_stage is False and (not is_model_up_to_date):
-            print('Обучаем')
-            os.system('python train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 32 --epochs 100 --no-aug --output ./trained_models')
-            # todo implement loading newer trained model and using percentage as an output
+            print('Training stage')
+            return_code = os.system('python train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 32 --epochs 100 --no-aug --output ./trained_models')
+            if return_code == 0:
+                with open('./is_model_up_to_date.pkl', 'wb') as file:
+                    pickle.dump(True, file)
+                is_model_up_to_date = True
+            else:
+                print('Model wasnt trained, check error above')
 
             def find_all(name, path):
                 result = []
@@ -159,11 +172,14 @@ def text(message):
                 return result
 
             all_matches = find_all('model_best.pth.tar', './trained_models')
+            if len(all_matches) == 1:
+                print('Bot didnt find any new trained models. Loading trained model by me')
             path_to_best_model = all_matches[len(all_matches) - 1]
-            os.system('python inference.py ./resized_imgs/not_labeled --model efficientnet_b0 --num-classes 2 --topk 1 --checkpoint ' + path_to_best_model + ' --input-size 3 224 224 -b 32 --interpolation bicubic')
-            with open('./is_model_up_to_date.pkl', 'wb') as file:
-                pickle.dump(True, file)
-            is_model_up_to_date = True
+            return_code = os.system('python inference.py ./resized_imgs/not_labeled --model efficientnet_b0 --num-classes 2 --topk 1 --checkpoint ' + path_to_best_model + ' --input-size 3 224 224 -b 32 --interpolation bicubic')
+            if return_code == 0:
+                print('Model output was saved')
+            else:
+                print('Model didnt send output, check error above')
         elif message.text == 'Обучить модель на новых данных' and marking_stage is False and is_model_up_to_date:
             bot.send_message(message.chat.id, 'Модель уже обучена на новых данных',
                              parse_mode='html')
@@ -181,8 +197,11 @@ def text(message):
             is_model_up_to_date = False
             marking_stage = False
             last_labeled_img_id = next_marking_img_id - 1
-            bot.send_message(message.chat.id, 'Бот сохраняет новые данные, в зависимости от количества данных это может занять разное время', parse_mode='html')
+            bot.send_message(message.chat.id, 'Бот сохраняет новые данные, в зависимости от количества данных это может занять разное время, подождите "Готово" от бота', parse_mode='html')
             img_load_and_save.move_new_labeled_imgs_to_proper_dirs(last_labeled_img_id, not_efficient_but_safe=True)
+            bot.send_message(message.chat.id,
+                             'Готово',
+                             parse_mode='html')
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             item1 = types.KeyboardButton('Режим разметки данных')
             item2 = types.KeyboardButton('Новый подбор кроссовок')
