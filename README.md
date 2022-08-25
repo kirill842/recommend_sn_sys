@@ -43,17 +43,17 @@ Once I went to a site with the purchase of things and thought, why not train a n
   
   https://www.python.org/downloads/
   
-  __0.2. Install requirements__
-  
-  ```
-  cd <repo location>
-  pip install -r requirements.txt
-  ```
-  
-  __1. Clone GitHub repository__
+  __1.1. Clone GitHub repository__
   
   ```
   git clone https://github.com/kirill842/recommend_sn_sys
+  ```
+  
+  __1.2. Install requirements__
+ 
+  ```
+  cd <repo location>
+  pip install -r requirements.txt
   ```
 
   __2. Install Chrome and download chromedriver__
