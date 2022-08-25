@@ -1,3 +1,5 @@
+<div align="center">
+  
 [![os](https://img.shields.io/badge/Linux-passing-success)]()
 [![os](https://img.shields.io/badge/MacOS-passing-success)]()
 [![os](https://img.shields.io/badge/Windows-passing-success)]()
@@ -7,6 +9,7 @@
 ![3 3](https://user-images.githubusercontent.com/37930588/186759432-893f18fb-9127-48d4-bdfe-8259456acd2f.PNG)
 ![3 4](https://user-images.githubusercontent.com/37930588/186759441-6e1b75d8-bde2-4202-8851-9c410372ff9a.PNG)
 
+</div>
 
 # Intro
 Once I went to a site with the purchase of things and thought, why not train a neural network that will recommend me those things that suit my taste? I chose sneakers as the main object of recommendation. My project consists of: 1) Scraping data from the site 2) Saving data via PostgreSQL 3) Data labeling 4) Training, Evaluation and Operation of the neural network 5) Interaction with the Telegram Bot API. For my project, I chose the Python language. For data scraping, I used BeautifulSoup and Selenium python libraries. To create a telegram bot, I used Telegram Bot API. For training, evaluation and operation of my neural network, I used pytorch and timm. During the development of the project, I labeled about 1600 pictures through the telegram bot. Trained EfficientNetB0 on 300 epochs using this data. I taught the bot to take the output of the model to recommend sneakers, and as a result I got a telegram bot that really recommends only those sneakers that match my taste. I can even look at the price, brand name, model name and product link so I can immediately order the shoes I like!
