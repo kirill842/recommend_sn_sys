@@ -75,7 +75,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
 </details>
 
 <details>
-  <summary>Docker(Experimental)</summary>
+  <summary>Docker(Experimental but should be fine)</summary>
   
   ## Initial usage
   __1. Install Docker Desktop__
@@ -86,13 +86,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   
   https://github.com/NVIDIA/nvidia-docker
   
-  __3. Clone GitHub repository__
-  
-  ```
-  git clone https://github.com/kirill842/recommend_sn_sys
-  ```
-  
-  __4. PostgreSQL__
+  __3. PostgreSQL__
   
   You will need PostgreSQL database to use this project
   1. Use these links to install PostgreSQL
@@ -109,13 +103,36 @@ Once I went to a site with the purchase of things and thought, why not train a n
     target integer
   );
   ```
+  __4. Create and fill docker_env_vars.txt like this__
   
-  __5. Build docker image and create docker container using my docker files__
+  ```
+  NUM_OF_PAGES_TO_SCRAP=20
+  SCROLL_PAUSE_TIME=0.2
+  BOT_TOKEN=<your bot telegram token>
+  DB_CONNECT_LINK=postgresql://<user>:<password>@<ip>:<port>/<db_name>
+  URL_TO_SCRAP=https://www.lamoda.ru/c/5971/shoes-muzhkrossovki
+  TABLE_NAME=<table_name>
+  USER=<user>
+  PASSWORD=<password>
+  HOST=<ip>
+  PORT=<port>
+  DATABASE=<db_name>
+  ```
   
-  __6. Run this command to run container with gpu__
+  __5. Use my docker image__
+  
+  https://hub.docker.com/repository/docker/kirprogfrog/my-repository
+  
+  initial usage
   ```
-  docker run --name my_all_gpu_container --gpus all -t nvidia/cuda
+  docker pull kirprogfrog/my-repository
+  docker run -ti --name <container_name> --env-file docker_env_vars.txt --gpus all kirprogfrog/my-repository
   ```
-  It's better to have the whole application completely in the image, to skip creating the image itself. I will ever make it
+  if docker container was stopped
+  ```
+  docker start -i <container_id>
+  ```
+  
+  __6. Go to your telegram bot and use__
 
 </details>
