@@ -52,7 +52,9 @@ Once I went to a site with the purchase of things and thought, why not train a n
   
   You will need PostgreSQL database to use this project
   1. Use these links to install PostgreSQL
-  https://www.postgresql.org/download/ | https://www.pgadmin.org/
+  https://www.postgresql.org/download/
+  
+  https://www.pgadmin.org/
   2. Run this command in pgAdmin4 to create table
   ```
   create table <your_table_name>(
