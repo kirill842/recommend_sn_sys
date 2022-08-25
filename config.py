@@ -14,7 +14,7 @@ try:
     DATABASE = os.environ['DATABASE']
     TABLE_NAME = os.environ['TABLE_NAME']
 except Exception as e:
-    print('Unable to find env var', e, 'Using default script')
+    print('Unable to find one of env vars', e, 'Using default script')
     import yaml
     with open("config.yaml", "r") as stream:
         print('Opening yaml file')

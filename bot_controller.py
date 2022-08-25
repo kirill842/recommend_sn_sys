@@ -8,6 +8,7 @@ import os
 import config
 import img_load_and_save
 import postgres_connection
+import web_crawler
 
 TOKEN = config.BOT_TOKEN
 marking_stage = False
@@ -54,7 +55,13 @@ with open('./is_model_up_to_date.pkl', 'rb') as file:
 with open('./first_launch.pkl', 'rb') as file:
     first_launch = pickle.load(file)
 
-print('Первый запуск?', first_launch)
+if first_launch is True:
+    web_crawler.scrap_site_and_update_database()
+    img_load_and_save.load_images_from_url_and_save(config.DB_CONNECT_LINK, './img_data_scraped_from_urls/all')
+    img_load_and_save.convert_images_to_training_format_and_save(config.DB_CONNECT_LINK)
+    with open('./first_launch.pkl', 'wb') as file:
+        # A new file will be created
+        pickle.dump(False, file)
 
 bot = telebot.TeleBot(TOKEN)
 
