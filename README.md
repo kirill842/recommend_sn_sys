@@ -26,7 +26,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
 - pandas
 - pillow
 - telegramBotAPI
-- torch
+- pytorch
 - postgresql
 - timm
 
