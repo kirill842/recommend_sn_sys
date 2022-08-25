@@ -152,3 +152,10 @@ Once I went to a site with the purchase of things and thought, why not train a n
   __6. Go to your telegram bot and use__
 
 </details>
+
+# Screenshots
+![1](https://user-images.githubusercontent.com/37930588/186758617-13d8a224-a987-4713-85ac-7f3612866d1f.PNG)
+![2](https://user-images.githubusercontent.com/37930588/186758624-d7895646-d764-44b1-ac55-3843d131dab6.PNG)
+![3](https:/![4](https://user-images.githubusercontent.com/37930588/186758637-87d2235c-9587-436d-829c-28de6b9a43a5.PNG)
+/user-images.githubusercontent.com/37930588/186758632-14fc9f3c-ae4b-412c-9b63-5d0ad64f0c12.PNG)
+
