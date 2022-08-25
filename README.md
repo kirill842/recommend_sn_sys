@@ -101,7 +101,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
 </details>
 
 <details>
-  <summary>Docker(Experimental but should be fine)</summary>
+  <summary>Docker (Experimental but should be fine)</summary>
   
   ## Initial usage
   __1. Install Docker Desktop__
