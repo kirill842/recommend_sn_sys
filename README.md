@@ -123,7 +123,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   
   https://hub.docker.com/repository/docker/kirprogfrog/my-repository
   
-  Make sure you are in the directory where your docker_env_vars.txt file is!
+  IMPORTANT! Make sure you are in the directory where your docker_env_vars.txt file is!
   
   initial usage
   ```
