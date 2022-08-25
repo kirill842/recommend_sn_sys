@@ -1,3 +1,7 @@
+[![os](https://img.shields.io/badge/Linux-passing-success)]()
+[![os](https://img.shields.io/badge/MacOS-passing-success)]()
+[![os](https://img.shields.io/badge/Windows-passing-success)]()
+
 ![3 1](https://user-images.githubusercontent.com/37930588/186759420-f48163c6-0a6d-4b2b-bfe7-66727b8d8e7d.PNG)
 ![3 2](https://user-images.githubusercontent.com/37930588/186759426-f4f6f8c1-2f75-43ec-8f29-50afc80791b6.PNG)
 ![3 3](https://user-images.githubusercontent.com/37930588/186759432-893f18fb-9127-48d4-bdfe-8259456acd2f.PNG)
