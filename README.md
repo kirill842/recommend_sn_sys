@@ -66,8 +66,6 @@ Once I went to a site with the purchase of things and thought, why not train a n
   ```
   cd <repo location>
   python setup.py
-  python web_crawler.py
-  python img_load_and_save.py
   python bot_controller.py
   ```
   __7. Find your bot on telegram and use__
@@ -127,6 +125,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   
   initial usage
   ```
+  cd <where your docker_env_vars.txt file is>
   docker pull kirprogfrog/my-repository
   docker run -ti --name <container_name> --env-file docker_env_vars.txt --gpus all kirprogfrog/my-repository
   ```
