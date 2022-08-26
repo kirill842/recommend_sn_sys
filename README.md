@@ -146,11 +146,11 @@ Once I went to a site with the purchase of things and thought, why not train a n
   BOT_TOKEN=<your bot telegram token>
   DB_CONNECT_LINK=postgresql://<user>:<password>@<ip>:<port>/<db_name>
   URL_TO_SCRAP=https://www.lamoda.ru/c/5971/shoes-muzhkrossovki
-  TABLE_NAME=<table_name>
-  USER=<user>
-  PASSWORD=<password>
-  HOST=<ip>
-  PORT=<port>
+  TABLE_NAME=<database_table_name>
+  USER=<database_user>
+  PASSWORD=<database_password>
+  HOST=<database_ip>
+  PORT=<database_port>
   DATABASE=<db_name>
   ```
   
