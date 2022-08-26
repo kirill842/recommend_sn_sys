@@ -175,6 +175,10 @@ Once I went to a site with the purchase of things and thought, why not train a n
 
 </details>
 
+
+https://user-images.githubusercontent.com/37930588/186907249-2e675fb5-9f2f-4fde-ab0a-4299cee6ea2d.mp4
+
+
 # Screenshots
 ![1](https://user-images.githubusercontent.com/37930588/186758617-13d8a224-a987-4713-85ac-7f3612866d1f.PNG)
 ![2](https://user-images.githubusercontent.com/37930588/186758624-d7895646-d764-44b1-ac55-3843d131dab6.PNG)
