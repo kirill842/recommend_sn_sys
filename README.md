@@ -133,7 +133,12 @@ Once I went to a site with the purchase of things and thought, why not train a n
     target integer
   );
   ```
-  __4. Create and fill docker_env_vars.txt. Template:__
+  
+  __4. Get your bot telegram token from BotFather__
+  
+  https://core.telegram.org/bots/
+  
+  __5. Create and fill docker_env_vars.txt. Template:__
   
   ```
   NUM_OF_PAGES_TO_SCRAP=20
@@ -149,7 +154,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   DATABASE=<db_name>
   ```
   
-  __5. Use my docker image__
+  __6. Use my docker image__
   
   https://hub.docker.com/repository/docker/kirprogfrog/my-repository
   
@@ -166,7 +171,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   docker start -i <container_id>
   ```
   
-  __6. Go to your telegram bot and use__
+  __7. Go to your telegram bot and use__
 
 </details>
 
