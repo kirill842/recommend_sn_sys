@@ -48,7 +48,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   __1.1. Clone GitHub repository__
   
   ```
-  git clone https://github.com/kirill842/recommend_sn_sys
+  git clone --recurse-submodules https://github.com/kirill842/recommend_sn_sys
   ```
   
   __1.2. Install requirements__
