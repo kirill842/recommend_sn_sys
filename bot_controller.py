@@ -148,7 +148,7 @@ def text(message):
             print('Training stage')
             bot.send_message(message.chat.id, 'Wait for the bot to finish training',
                              parse_mode='html')
-            return_code = os.system('python train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 32 --epochs 40 --no-aug --output ./trained_models')
+            return_code = os.system('python pytorch-image-models/train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 32 --epochs 40 --no-aug --output ./trained_models')
             if return_code == 0:
                 print('Model was trained successfully')
                 bot.send_message(message.chat.id, 'Training completed successfully! Now wait for the model to predict recommendations',
@@ -173,7 +173,7 @@ def text(message):
             if len(all_matches) == 1:
                 print('Bot didnt find any new trained models. Loading trained model by me')
             path_to_best_model = all_matches[len(all_matches) - 1]
-            return_code = os.system('python inference.py ./resized_imgs/not_labeled --model efficientnet_b0 --num-classes 2 --topk 1 --checkpoint ' + path_to_best_model + ' --input-size 3 224 224 -b 32 --interpolation bicubic')
+            return_code = os.system('python pytorch-image-models/inference.py ./resized_imgs/not_labeled --model efficientnet_b0 --num-classes 2 --topk 1 --checkpoint ' + path_to_best_model + ' --input-size 3 224 224 -b 32 --interpolation bicubic')
             if return_code == 0:
                 bot.send_message(message.chat.id,
                                  'The model predicted recommendations',
