@@ -46,6 +46,7 @@ Once I went to a site with the purchase of things and thought, why not train a n
   https://www.python.org/downloads/
   
   https://pytorch.org/get-started/locally/
+  
   example of installation: conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
   
   __1.1. Clone GitHub repository__
