@@ -40,7 +40,7 @@ def get_data_from_url(url_to_scrap: str, page_number: int, scroll_pause_time=con
     brand_names = []
     product_names = []
 
-    for a in soup.findAll('a', attrs={'class': 'wCjUeog4KtWw64IplV1e6 _3dch7Ytt3ivpea7TIsKVjb x-product-card__pic x-product-card__pic-catalog'}):
+    for a in soup.findAll('a', attrs={'class': '_root_clp6c_2 _label_clp6c_17 x-product-card__pic x-product-card__pic-catalog x-product-card__pic x-product-card__pic-catalog'}):
         product_url = 'lamoda.ru' + a['href']
         product_urls.append(product_url)
         image_url = a.find('img')['src']

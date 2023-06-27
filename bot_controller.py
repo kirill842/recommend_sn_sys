@@ -103,43 +103,46 @@ def text(message):
             marking_stage = True
         elif message.text == 'New selection of sneakers' and marking_stage is False:
             column_names = ['img_id_jpg', 'target']
+            predictions_loaded = False
             try:
                 output = pd.read_csv('topk_ids.csv', names=column_names)
+                predictions_loaded = True
             except Exception as error:
                 print(error)
                 bot.send_message(message.chat.id, 'The bot did not find the output of the model, first label the data and train the model', parse_mode='html')
                 exit()
-            good_output = output[output['target'] == 1]
-            img_ids_jpg = good_output['img_id_jpg'].tolist()
-            good_output['img_id'] = [img_id_jpg[:-4] for img_id_jpg in img_ids_jpg]
-            mask = []
-            for i, row in good_output.iterrows():
-                if int(row['img_id']) not in already_recommended_img_ids:
-                    mask.append(True)
-                else:
-                    mask.append(False)
-            good_output = good_output[mask]
-            scraped_imgs_df = pd.read_sql(
-                'SELECT img_id, img_url, product_url, brand_name, product_name, price FROM ' + config.TABLE_NAME,
-                config.DB_CONNECT_LINK
-            )
-            i = 0
-            for index, row in good_output.iterrows():
-                if i == 5:
-                    break
-                img_id = int(row['img_id'])
-                already_recommended_img_ids.append(img_id)
-                image = open('./img_data_scraped_from_urls/all' + '/' + str(img_id) + '.jpg', 'rb')
-                caption = ''
-                single_product = scraped_imgs_df[scraped_imgs_df['img_id'] == img_id]
-                caption += str(single_product['brand_name'].values[0]) + ' ' + str(single_product['product_name'].values[0]) + '\n'
-                caption += 'Price: ' + str(single_product['price'].values[0]) + '\n'
-                caption += 'Product Link: ' + str(single_product['product_url'].values[0])
-                time.sleep(1)
-                bot.send_photo(message.chat.id, image, caption=caption)
-                i += 1
-            with open('./already_recommended_img_ids.pkl', 'wb') as file:
-                pickle.dump(already_recommended_img_ids, file)
+            if predictions_loaded:
+                good_output = output[output['target'] == 1]
+                img_ids_jpg = good_output['img_id_jpg'].tolist()
+                good_output['img_id'] = [img_id_jpg[:-4] for img_id_jpg in img_ids_jpg]
+                mask = []
+                for i, row in good_output.iterrows():
+                    if int(row['img_id']) not in already_recommended_img_ids:
+                        mask.append(True)
+                    else:
+                        mask.append(False)
+                good_output = good_output[mask]
+                scraped_imgs_df = pd.read_sql(
+                    'SELECT img_id, img_url, product_url, brand_name, product_name, price FROM ' + config.TABLE_NAME,
+                    config.DB_CONNECT_LINK
+                )
+                i = 0
+                for index, row in good_output.iterrows():
+                    if i == 5:
+                        break
+                    img_id = int(row['img_id'])
+                    already_recommended_img_ids.append(img_id)
+                    image = open('./img_data_scraped_from_urls/all' + '/' + str(img_id) + '.jpg', 'rb')
+                    caption = ''
+                    single_product = scraped_imgs_df[scraped_imgs_df['img_id'] == img_id]
+                    caption += str(single_product['brand_name'].values[0]) + ' ' + str(single_product['product_name'].values[0]) + '\n'
+                    caption += 'Price: ' + str(single_product['price'].values[0]) + '\n'
+                    caption += 'Product Link: ' + str(single_product['product_url'].values[0])
+                    time.sleep(1)
+                    bot.send_photo(message.chat.id, image, caption=caption)
+                    i += 1
+                with open('./already_recommended_img_ids.pkl', 'wb') as file:
+                    pickle.dump(already_recommended_img_ids, file)
         elif message.text == 'I like it' and marking_stage is True:
             postgres_connection.mark_image_by_index(1, next_marking_img_id)
             increment_next_marking_img_id()
@@ -148,7 +151,7 @@ def text(message):
             print('Training stage')
             bot.send_message(message.chat.id, 'Wait for the bot to finish training',
                              parse_mode='html')
-            return_code = os.system('python pytorch-image-models/train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 32 --epochs 40 --no-aug --output ./trained_models')
+            return_code = os.system('python pytorch-image-models/train.py ./resized_imgs --train-split train --val-split val --model efficientnet_b0 --pretrained --num-classes 2 --input-size 3 224 224 -b 16 --epochs 40 --no-aug --output ./trained_models')
             if return_code == 0:
                 print('Model was trained successfully')
                 bot.send_message(message.chat.id, 'Training completed successfully! Now wait for the model to predict recommendations',
@@ -157,7 +160,7 @@ def text(message):
                     pickle.dump(True, file)
                 is_model_up_to_date = True
             else:
-                print('Model wasnt trained, check error above')
+                print('Model wasnt trained, check error above. Possible solution might be to label more data')
                 bot.send_message(message.chat.id,
                                  'Training was not completed successfully, check the error log',
                                  parse_mode='html')
