@@ -59,9 +59,10 @@ def mark_image_by_index(mark: int, img_id: int):
         cursor.execute(sql_update_query, (mark, img_id))
         connection.commit()
         count = cursor.rowcount
-        print(count, "Record Updated successfully ")
+        print(count, "Record Updated successfully")
     except (Exception, psycopg2.Error) as error:
-        print("Error in update operation", error)
+        print("Error in update operation:", error)
+        exit()
     finally:
         # closing database connection
         if connection:

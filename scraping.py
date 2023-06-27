@@ -40,18 +40,18 @@ def get_data_from_url(url_to_scrap: str, page_number: int, scroll_pause_time=con
     brand_names = []
     product_names = []
 
-    for a in soup.findAll('a', attrs={'class': '_root_clp6c_2 _label_clp6c_17 x-product-card__pic x-product-card__pic-catalog x-product-card__pic x-product-card__pic-catalog'}):
+    for a in soup.findAll('a', attrs={'class': '_root_f9xmk_2 _label_f9xmk_20 x-product-card__pic x-product-card__pic-catalog x-product-card__pic x-product-card__pic-catalog'}):
         product_url = 'lamoda.ru' + a['href']
         product_urls.append(product_url)
         image_url = a.find('img')['src']
         image_urls.append(image_url)
 
     for div in soup.findAll('div', attrs={'class': 'x-product-card-description'}):
-        price = div.find('span').text
+        price = div.find('span', attrs={'class': "x-product-card-description__price-new x-product-card-description__price-WEB8507_price_no_bold _price_k0rqx_8"}).text
         prices.append(price.strip(' ₽').replace(" ", ""))
-        brand_name = div.find('div', attrs={'class': 'x-product-card-description__brand-name'}).text
+        brand_name = div.find('div', attrs={'class': 'x-product-card-description__brand-name _brandName_k0rqx_6'}).text
         brand_names.append(brand_name)
-        product_name = div.find('div', attrs={'class': 'x-product-card-description__product-name'}).text
+        product_name = div.find('div', attrs={'class': 'x-product-card-description__product-name _productName_k0rqx_7'}).text
         product_names.append(product_name)
 
     return image_urls, product_urls, brand_names, product_names, prices
