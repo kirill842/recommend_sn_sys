@@ -33,7 +33,7 @@
 - timm
 
 
-# Installation guide
+# Установка
 
 <details>
   <summary>Source</summary>
@@ -181,6 +181,6 @@
 
 </details>
 
-# Usage
+# Пример использования
   
 https://user-images.githubusercontent.com/37930588/186913241-01f79f33-2588-4057-ab7c-d63e3ce7a3e0.mp4
