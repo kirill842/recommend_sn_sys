@@ -11,12 +11,12 @@
 
 </div>
 
-This project uses files train.py, inference.py and timm folder from https://github.com/rwightman/pytorch-image-models
+Этот проект использует файлы train.py, inference.py и папку timm из https://github.com/rwightman/pytorch-image-models
 
-# About
-Once I went to a site with the purchase of things and thought, why not train a neural network that will recommend me those things that suit my taste? I chose sneakers as the main object of recommendation. My project consists of: 1) Scraping data from the site 2) Saving data via PostgreSQL 3) Data labeling 4) Training, Evaluation and Operation of the neural network 5) Interaction with the Telegram Bot API. For my project, I chose the Python language. For data scraping, I used BeautifulSoup and Selenium python libraries. To create a telegram bot, I used Telegram Bot API. For training, evaluation and operation of my neural network, I used pytorch and timm. During the development of the project, I labeled about 1600 pictures through the telegram bot. Trained EfficientNetB0 on 300 epochs using this data. I taught the bot to take the output of the model to recommend sneakers, and as a result I got a telegram bot that really recommends only those sneakers that match my taste. I can even look at the price, brand name, model name and product link so I can immediately order the shoes I like!
+# Описание проекта
+Однажды я зашел на сайт с покупкой вещей и подумал, почему бы не натренировать нейросеть, которая сама порекомендует мне те вещи, которые мне понравятся? Зачем мне самому выбирать вещи, если это может сделать за меня нейросеть? Для начала я остановился на рекомендации кроссовок, но проект будет не сложно масштабировать для произвольного количества типов вещей. Мой проект состоит из: 1) Парсинга данных с сайта lamoda.ru 2) Использованием PostgreSQL для хранения данных 3) Автоматической разметки данных 4) Тренировки, валидации и инференса нейросети 5) Развертки приложения в виде телеграм-бота, используя Telegram Bot API. Основной язык программирования проекта: Python. Для парсинга данных я использовал библиотеки BeautifulSoup и Selenium. Для развертки я использовал Telegram Bot API. Для тренировки, валидации и инференса нейросети я использовал PyTorch и timm. В ходе создания проекта я разметил более 1600 картинок через телеграм-бота. Натренировал EfficientNetB0 на 300 эпохах используя размеченные мной данные. И как результат я получил телеграм-бота, который рекомендует мне только те кроссовки, которые соответствуют моему вкусу, что подтвердило успех реализации проекта. Я даже могу посмотреть цену, бренд, название модели и ссылку для покупки понравившихся мне кроссовок - это позволяет почти мгновенно заказать понравившиеся кроссовки!
 
-# Technical stack
+# Стек технологий
 
 - image classification
 - python3
