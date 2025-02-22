@@ -176,6 +176,6 @@
 
 # Пример использования
 
-https://github.com/user-attachments/assets/600234f2-3583-4b08-84e4-74b7fec789d0
+https://github.com/user-attachments/assets/27de2e40-0281-4140-b100-8c879d9dd03e
 
 
