@@ -18,19 +18,12 @@
 
 # Стек технологий
 
-- image classification
-- python3
-- selenium
-- beautifulsoup
-- argparse
-- sqlalchemy
-- psycopg2
-- pandas
-- pillow
-- telegramBotAPI
-- pytorch
-- postgresql
-- timm
+- Python
+- PyTorch
+- SQL
+- Docker
+- BeautifulSoup и Selenium
+- Telegram Bot API
 
 
 # Установка
