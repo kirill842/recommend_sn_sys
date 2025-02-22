@@ -175,5 +175,7 @@
 </details>
 
 # Пример использования
-  
-https://user-images.githubusercontent.com/37930588/186913241-01f79f33-2588-4057-ab7c-d63e3ce7a3e0.mp4
+
+https://github.com/user-attachments/assets/600234f2-3583-4b08-84e4-74b7fec789d0
+
+
