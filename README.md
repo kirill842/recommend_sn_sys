@@ -31,7 +31,7 @@
 
 - Python
 - PyTorch
-- SQL
+- PostgreSQL
 - Docker
 - BeautifulSoup и Selenium
 - Telegram Bot API
