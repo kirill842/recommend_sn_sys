@@ -1,7 +1,7 @@
 # token to connect your telegram bot
-bot_token: 5620653186:AAGXOQx6DLtL6xyTqifFk-WvZncT4N_YwkY
+bot_token: <bot_token>
 # connection to database
-db_connect_link: postgresql://postgres:asdDSA84265!@localhost:5432/postgres
+db_connect_link: postgresql://<user>:<pass>!@<ip>:<port>/<db_name>
 # url to scrap images from, only lamodaru supported with exactly 60 products on 1 page
 url_to_scrap: https://www.lamoda.ru/c/5971/shoes-muzhkrossovki
 # path to chrome driver
@@ -13,8 +13,8 @@ table_name: main_table
 # scrolling pause while scraping
 scroll_pause_time: 0.2
 # sql info
-user: postgres
-password: asdDSA84265!
-host: 127.0.0.1
-port: 5432
-database: postgres
+user: <user>
+password: <pass>
+host: <ip>
+port: <port>
+database: <db_name>
