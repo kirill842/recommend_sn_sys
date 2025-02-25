@@ -106,7 +106,7 @@
   python setup.py
   python bot_controller.py
   ```
-  __7. Find your bot on telegram and use__
+  __7. Find your bot in telegram and use__
   
 </details>
 
